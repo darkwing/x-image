@@ -8,17 +8,23 @@ xtag.register('x-image', {
 	    wrapper.className = 'x-image-wrapper';
 	    this.appendChild(wrapper);
 
-	    // Create and show loader
-	    var loader = this.loader = document.createElement('div');
+	    // Create and show loader and spinner
+	    var loader = document.createElement('div');
 	    wrapper.appendChild(loader);
 	    loader.className = 'x-image-loader';
+
+	    var spinner = document.createElement('div');
+	    spinner.className = 'x-image-spinner';
+	    loader.appendChild(spinner);
+
 	    this.showLoader();
 
 	    // Create IMG element, send it off
-	    var image = this.image = document.createElement('img');
+	    var image = this.xtag.data.image = document.createElement('img');
 	    image.addEventListener('load', hideLoader);
 	    image.addEventListener('error', hideLoader);
 	    xtag.toArray(this.attributes).forEach(function(item) {
+	    	// Don't pass down IDs
 	      if(item.name != 'id') image.setAttribute(item.name, item.value);
 	    });
 	    wrapper.appendChild(image);
@@ -26,12 +32,6 @@ xtag.register('x-image', {
 	    function hideLoader() {
 	      	self.hideLoader();
 	    }
-	  },
-	  attributeChanged: function(name, value) {
-	  	// If the SRC changes, we need to show the loader right away
-	    if(name == 'src') this.showLoader();
-	    // Mirror changes to the x-image to the img
-	    if(name != 'id') this.image.setAttribute(name, value);
 	  }
 	},
 	accessors: {
@@ -39,26 +39,34 @@ xtag.register('x-image', {
 	    get: function() {
 	      return this.getAttribute('src');
 	    },
-	    set: function(value) {
+	    'set:attribute()': function(value) {
 	      // Show the overlay
 	      this.showLoader();
-	      return value ? this.setAttribute('src', value) : this.removeAttribute('src');
+	      this.xtag.data.image.src = value;
 	    }
 	  },
 	  width: {
 	    get: function() {
 	      return this.getAttribute('width');
 	    },
-	    set: function(value) {
-	      return value ? this.setAttribute('width', value) : this.removeAttribute('width');
+	    'set:attribute()': function(value) {
+	      this.xtag.data.image.setAttribute('width', value);
 	    }
 	  },
 	  height: {
 	    get: function() {
 	      return this.getAttribute('height');
 	    },
-	    set: function(value) {
-	      return value ? this.setAttribute('height', value) : this.removeAttribute('height');
+	    'set:attribute()': function(value) {
+	      this.xtag.data.image.setAttribute('height', value);
+	    }
+	  },
+	  alt: {
+	    get: function() {
+	      return this.getAttribute('alt');
+	    },
+	    'set:attribute()': function(value) {
+	      this.xtag.data.image.setAttribute('alt', value);
 	    }
 	  }
 	},
