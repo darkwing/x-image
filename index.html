@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+
+  <style type="text/css">
+    x-image {
+      display: inline-block;
+    }
+
+    x-image img {
+      position: relative;
+      z-index: 2;
+      display: block; /* prevents space under image */
+    }
+
+    .x-image-wrapper {
+      position: relative;
+    }
+
+    .x-image-loader {
+      background: #000;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      position: absolute;
+      opacity: 0;
+      z-index: 3;
+
+      transition-property: opacity;
+      transition-duration: .5s;
+
+      -webkit-transition-property: opacity;
+      -webkit-transition-duration: .5s;
+    }
+
+    .x-image-inactive .x-image-loader {
+      display: none;
+    }
+
+    .x-image-display .x-image-loader {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Auto-Updating Example -->
+  <h2>Auto-Updating Element</h2>
+  <x-image id="xImage1" src="http://davidwalsh.name/demo/js250.jpg" onclick="this.src='http://davidwalsh.name/demo/css3logo250.jpg';"></x-image>
+
+  <p>
+    <button onclick="document.querySelector('#xImage1').setAttribute('src', 'http://davidwalsh.name/demo/js250.jpg')">JS</button>
+    <button onclick="document.querySelector('#xImage1').setAttribute('src', 'http://davidwalsh.name/demo/css3logo250.jpg')">CSS</button>
+  </p>
+
+  <!-- Examples -->
+  <h2>Image - Contrained by Attributes - 150x116</h2>
+  <x-image id="xImage2" src="http://davidwalsh.name/wp-content/themes/2k11/images/homeLogo.png" alt="David Walsh Blog" width="150" height="116"></x-image>
+
+  <p>
+    <button onclick="document.querySelector('#xImage2').setAttribute('width', '')">Auto Width</button>
+    <button onclick="document.querySelector('#xImage2').setAttribute('height', '')">Auto Height</button>
+  </p>
+
+  <h2>Image - No Constraints</h2>
+  <x-image src="http://davidwalsh.name/wp-content/themes/2k11/images/homeLogo.png"></x-image>
+
+  <!--
+  <h2>Image - No SRC, error</h2>
+  <x-image src="js"></x-image>
+-->
+
+  <!-- Root components -->
+  <script src="https://raw.github.com/mozilla/web-components/master/src/document.register.js"></script>
+  <script src="https://raw.github.com/x-tag/core/master/src/core.js"></script>
+  <script src="x-image.js"></script>
+</body>
+</html>
