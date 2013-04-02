@@ -1,6 +1,6 @@
 # About
 
-The x-image component allows for non-blocking image loading.
+The x-image component allows for non-blocking image loading as well as elegeant image "loading" overlay.
 
 # Dev Setup
 
