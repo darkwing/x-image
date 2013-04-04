@@ -1,3 +1,5 @@
+// create a closure around this definition  (function(){})();
+
 xtag.register('x-image', {
 	lifecycle: {
 	  created: function(){
@@ -71,6 +73,7 @@ xtag.register('x-image', {
 	  }
 	},
 	methods: {
+		// These are internal functions, so these belong in the closure, not on the element
 	  showLoader: function() {
 	  	xtag.removeClass(this, 'x-image-inactive');
 	    xtag.addClass(this, 'x-image-display');
