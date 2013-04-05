@@ -1,6 +1,13 @@
 <!doctype html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="x-tag-components.css">
+  <link rel="stylesheet" type="text/css" href="../src/image.css">
+
+  <!-- Run 'npm install', 'bower install', then 'grunt build' to get the x-tag-components files. -->
+  <!-- We always put x-tag-components js and css in the head, so elements will inflate sooner. -->
+  <script src="x-tag-components.js"></script>
+  <script src="../src/image.js"></script>
 </head>
 <body>
   <!-- Auto-Updating Example -->
@@ -29,9 +36,5 @@
   <x-image src="js"></x-image>
 -->
 
-  <!-- Root components -->
-  <script src="https://raw.github.com/mozilla/web-components/master/src/document.register.js"></script>
-  <script src="https://raw.github.com/x-tag/core/master/src/core.js"></script>
-  <script src="x-image.js"></script>
 </body>
 </html>
